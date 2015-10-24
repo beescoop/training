@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record model="ir.ui.view" id="task_type_tree_view"> 
+		<field name="name">task.type.view.tree</field>
+		<field name="model">bees.task.type</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name" ></field>
+				<field name="description"></field>
+			</tree>
+		</field>
+    
+    </record>
+    
+      <record model="ir.ui.view" id="task_type_search_view"> 
+		<field name="name">task.type.view.search</field>
+		<field name="model">bees.task.type</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name" ></field>
+				<field name="description"></field>
+			</search>
+		</field>
+    
+    </record>
+    
+    <record model="ir.ui.view" id="task_type_form_view"> 
+		<field name="name">task.type.view.form</field>
+		<field name="model">bees.task.type</field>
+		<field name="arch" type="xml">
+			<form>
+				<group>
+					<field name="name" ></field>
+				</group>
+				<notebook>
+					<page string="Description">
+						<field name="description" />
+					</page>
+					<page string="Tasks">
+                        <field name="task_ids">
+                            <tree>
+                                <field name="date_start" invisible="1" />
+                                <field name="date_end" />
+                                <field name="responsible_id" />
+                            </tree>
+                            <form>
+                                <group>
+                                    <field name="date_start" />
+                                    <field name="date_end" />
+                                    <field name="responsible_id" />
+                                </group>
+                                
+                                
+                            </form>
+                            
+                        </field>
+                    </page>
+                    <page string="Allow User">
+                        <field name="allow_user_ids" />
+                    </page>
+					
+				</notebook>
+			</form>
+		</field>
+    
+    </record>
+        
+    <record model="ir.actions.act_window" id="action_task_type">
+      <field name="name">bees_member server</field>
+      <field name="res_model">bees.task.type</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    
+    
+  
+    <!-- Top menu item -->
+    <menuitem name="Member" id="menu_root"/>
+    <!-- menu categories -->
+
+    <menuitem name="Task" id="menu_task" parent="menu_root"/>
+
+    
+    <menuitem name="Task Type" id="bees_member.menu_task_type" parent="bees_member.menu_task" 
+      action="action_task_type" sequence="2"/>
+
+  </data>
+</openerp>
