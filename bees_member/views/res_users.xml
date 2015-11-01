@@ -17,9 +17,9 @@
     <record model="ir.ui.view" id="res_users_tree_inherit"> 
         <field name="name">res.users.tree.inherit</field>
         <field name="model">res.users</field>
-        <field name="inherit_id"  ref="base.view_users_tree" />
+        <field name="inherit_id"  ref="base.view_users_form" />
         <field name="arch" type="xml" >
-            <xpath expr="//page[@name='access_rights']" position="after">
+            <page name="access_rights" position="after">
                 <page string="BeesCoop">
                     <group>
                         <field name="member" />
@@ -31,7 +31,7 @@
                 <page string="Allow Tasks">
                     <field name="allow_task_type_ids" />
                 </page>                 
-            </xpath>
+            </page>
         </field>
     </record>
   </data>

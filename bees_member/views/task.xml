@@ -19,18 +19,29 @@
         <field name="model">bees.task</field>
         <field name="arch" type="xml">
             <form>
-                <group>
-                    <group>
-                        <field name="name" ></field>
-                        <field name="type_id"></field>
-                        <field name="responsible_id"></field>
-                    </group>
-                    <group>
-                        <field name="date_start"></field>
-                        <field name="date_end"></field>
-                        <field name="duration"></field>
-                    </group>
-                </group>
+				<header>
+					<button name="confirm" string="Confirmer" type="object" 
+					attrs="{ 'invisible' : [('state', '!=', 'draft')] }" />
+					<button name="absent" string="Missing" type="object" 
+					attrs="{ 'invisible' : [('state', '!=', 'confirmed')] }" />
+					<button name="done" string="Done" type="object" 
+					attrs="{ 'invisible' : [('state', '!=', 'confirmed')] }" />
+					<field name="state" widget="statusbar" />
+				</header>
+				<sheet>
+					<group>
+						<group>
+							<field name="name" ></field>
+							<field name="type_id"></field>
+							<field name="responsible_id"></field>
+						</group>
+						<group>
+							<field name="date_start"></field>
+							<field name="date_end"></field>
+							<field name="duration"></field>
+						</group>
+					</group>
+                </sheet>
             </form>
         </field>
     </record>
