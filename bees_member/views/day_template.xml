@@ -1,0 +1,45 @@
+<openerp>
+    <record model="ir.ui.view" id="day_template_tree_view">
+        <field name="name">day_template.view.tree</field>
+        <field name="model">bees.day_template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"></field>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="day_template_form_view">
+        <field name="name">day_template.view.form</field>
+        <field name="model">bees.day_template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                    </group>
+                    <field name="template_ids">
+                        <tree editable="bottom">
+                            <field name="type_id" />
+                            <field name="number" />
+                            <field name="duration" />
+                        </tree>
+                    </field>
+                    <button type="object" string="Generate Task"
+                        name="generate_task" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="action_day_template">
+        <field name="name">Bees Day Template</field>
+        <field name="res_model">bees.day_template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Day Template" id="menu_day_template"
+        parent="menu_task" action="action_day_template" sequence="100" />
+</openerp>
