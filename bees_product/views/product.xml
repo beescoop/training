@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <record model="ir.ui.view" id="product_template_form_inherit"> 
+        <field name="name">bees.product.template</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id"  ref="product.product_template_only_form_view" />
+        <field name="arch" type="xml" >
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button name="copy_from_category" string="Copy Label from Category" type="object"/>
+                </header>
+            </xpath>
+            <field name="barcode" position="after">
+                <field name="bio" options="{'no_create': True}"/>
+                <field name="local" options="{'no_create': True}"/>
+                <field name="fair_trade" options="{'no_create': True}"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="product_category_form_inherit"> 
+        <field name="name">bees.product.category</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id"  ref="product.product_category_form_view" />
+        <field name="arch" type="xml" >
+            <xpath expr="//form" position="inside">
+                <group string="Label">
+                    <field name="bio" options="{'no_create': True}" />
+                    <field name="local" options="{'no_create': True}" />
+                    <field name="fair_trade" options="{'no_create': True}" />
+                    
+                </group>
+            </xpath>
+        </field>
+    </record>
+  
+  
+</openerp>

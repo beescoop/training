@@ -1,0 +1,16 @@
+<odoo>
+    <record model="product.color" id="green">
+        <field name="name">Vert</field>
+        <field name="color_code">#40ff00</field>
+    </record>
+
+    <record model="product.color" id="orange">
+        <field name="name">Orange</field>
+        <field name="color_code">#ffa200</field>
+    </record>
+
+    <record model="product.color" id="red">
+        <field name="name">Rouge</field>
+        <field name="color_code">#ff4000</field>
+    </record>
+</odoo>
