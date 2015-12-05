@@ -32,6 +32,7 @@
         'views/task_type.xml',
         'views/task.xml',
         'views/res_users.xml',
+        'views/day_template.xml',
         'templates.xml',
     ],
     # only loaded in demonstration mode

@@ -15,6 +15,7 @@ class BeesTaskTemplate(models.Model):
     duration = fields.Float(required=True)
 
 
+
 class BeesDayTemplate(models.Model):
     _name = 'bees.day_template'
 
@@ -23,8 +24,8 @@ class BeesDayTemplate(models.Model):
 
     @api.multi
     def generate_task(self):
+        self.ensure_one()
         task_ids = []
-        task_env = self.env["bees.task"]
         for template in self.template_ids:
             for _ in xrange(0, template.number):
                 task_data = {
@@ -35,7 +36,7 @@ class BeesDayTemplate(models.Model):
                     'type_id':  template.type_id.id,
                     'state': 'draft',
                 }
-                task = task_env.create(task_data)
+                task = self.env["bees.task"].create(task_data)
                 task_ids.append(task.id)
 
         return {
@@ -46,3 +47,4 @@ class BeesDayTemplate(models.Model):
             'target': 'current',
             'domain': [('id', 'in', task_ids)]
         }
+        

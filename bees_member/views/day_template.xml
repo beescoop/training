@@ -22,7 +22,7 @@
                         <tree editable="bottom">
                             <field name="type_id" />
                             <field name="number" />
-                            <field name="duration" />
+                            <field name="duration"  widget="float_time" />
                         </tree>
                     </field>
                     <button type="object" string="Generate Task"

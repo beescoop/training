@@ -38,7 +38,7 @@
 						<group>
 							<field name="date_start"></field>
 							<field name="date_end"></field>
-							<field name="duration"></field>
+							<field name="duration"  widget="float_time"></field>
 						</group>
 					</group>
                 </sheet>

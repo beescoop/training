@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from openerp import models, fields, api
+from datetime import timedelta
 
 
 class BeesTask(models.Model):
@@ -10,9 +11,9 @@ class BeesTask(models.Model):
     name = fields.Char("name")
     date_start = fields.Datetime("Start")
     date_end = fields.Datetime("end")
-    duration = fields.Float("Durée")
+    duration = fields.Float(compute="_compute_duration", inverse="_inverse_duration", string="Durée")
     type_id = fields.Many2one("bees.task.type", "Type")
-    responsible_id = fields.Many2one("res.users", string="Responsable")
+    responsible_id = fields.Many2one("res.users", string="Responsable", domain=[('member', '=', True)])
     state = fields.Selection([('draft', 'Draft'), 
                               ('confirmed', 'Confirmed'), 
                               ('done', 'Done'), 
@@ -29,8 +30,20 @@ class BeesTask(models.Model):
     @api.one                        
     def done(self):
         self.state = 'done'
-        users = self.env['res.users'].search([('member', '=', True)])
-        for user in users:
-            print user.login
-            print user.nb_part
 
+    @api.one
+    @api.depends('date_start', 'date_end')
+    def _compute_duration(self):
+        if self.date_start and self.date_end:
+            delta = fields.Datetime.from_string(self.date_end) - fields.Datetime.from_string(self.date_start)
+            self.duration = delta.seconds / 3600.0
+    
+    @api.one
+    def _inverse_duration(self):
+        if self.date_start and self.duration:
+            date_start = fields.Datetime.from_string(self.date_start)
+            self.date_end = fields.Datetime.to_string(date_start + timedelta(hours=self.duration))
+        
+    
+     
+     

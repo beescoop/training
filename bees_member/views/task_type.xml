@@ -57,7 +57,7 @@
                         </field>
                     </page>
                     <page string="Allow User">
-                        <field name="allow_user_ids" />
+                        <field name="allow_user_ids" domain="[('member', '=', True)]"/>
                     </page>
 					
 				</notebook>
